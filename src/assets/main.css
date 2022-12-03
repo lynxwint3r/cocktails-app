@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700;800&display=swap');
+
+/* Here are my CSS resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+:root {
+  font-size: 62.5%;
+  --font-weight-extra-bold: 800;
+  --font-weight-bold: 700;
+  --font-weight-medium: 400;
+  --font-weight-light: 200;
+  --font-family: "Outfit",Futura,-apple-system,sans-serif;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-size: 1.6rem;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: break-word;
+}
+#root,
+#__next,
+#app {
+  isolation: isolate;
+}
