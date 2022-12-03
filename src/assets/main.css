@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700;800&display=swap');
 
+/* Property varialbes */
+:root {
+  --bgcolor-primary: hsl(0, 0%, 20%);
+  --bgcolor-secondary: hsl(0, 0%, 10%);
+  --clr-primary: hsl(219, 38%, 90%);
+}
+
 /* Here are my CSS resets */
 *,
 *::before,
@@ -20,6 +27,8 @@
 html,
 body {
   height: 100%;
+  background-color: var(--bgcolor-secondary);
+  color: var(--clr-primary);
 }
 body {
   font-size: 1.6rem;
