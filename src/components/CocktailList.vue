@@ -21,12 +21,13 @@ import CocktailCard from '@/components/CocktailCard.vue'
 
 .cards {
   display: grid;
-  gap: 1rem;
+  gap: 2.5rem;
 }
 
 @container layout (900px < width) {
   .cards {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
 }
 </style>

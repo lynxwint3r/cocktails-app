@@ -6,6 +6,14 @@
   <main class="layout">
     <slot />
   </main>
+  <footer class="footer">
+    <p>
+      We can imagine some new content right below 👇 like a search bar to query
+      a specific cocktail based on its name or its category or alcohols. We can
+      also imagine the possiblity to clic on one of the cards to open a detail
+      in another page or in a modal.
+    </p>
+  </footer>
 </template>
 
 <style lang="scss" scoped>
@@ -19,8 +27,14 @@
 }
 
 .layout {
-  max-width: 140rem;
+  max-width: 160rem;
   margin: 0 auto;
   padding: 1rem;
+}
+
+.footer {
+  max-width: 50vw;
+  margin: 5rem auto 0;
+  text-align: center;
 }
 </style>
