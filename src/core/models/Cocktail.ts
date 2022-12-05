@@ -1,7 +1,5 @@
 export type CocktailResponse = {
-  drinks: [
-    DrinkResponse
-  ]
+  drinks: [DrinkResponse]
 }
 
 export type DrinkResponse = {
@@ -48,6 +46,6 @@ export type Cocktail = {
   category: string
   instructions: string
   imgUrl: string
-  ingredients: (string | null)[]
-  measures: (string | null)[]
+  ingredients: string[]
+  measures: string[]
 }

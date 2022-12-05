@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import type { Cocktail } from '@/core/models/Cocktail'
+import { computed, reactive, ref } from 'vue'
+
+type CocktailCardProps = {
+  cocktail: Cocktail
+}
+const props = defineProps<CocktailCardProps>()
 
 const card = ref<HTMLDivElement>()
 function handleMouseMove(event: MouseEvent) {
@@ -12,30 +18,35 @@ function handleMouseMove(event: MouseEvent) {
   card.value?.style.setProperty('--mouse-x', `${x}px`)
   card.value?.style.setProperty('--mouse-y', `${y}px`)
 }
+
+const cocktail = reactive(props.cocktail)
+const measuredIngredients = computed(() => {
+  return cocktail.ingredients.map(
+    (ingredient, index) => `${cocktail.measures[index] || ''} ${ingredient}`
+  )
+})
 </script>
 
 <template>
   <div class="card card--container" ref="card">
-    <div class="cocktail__category">I'm a category</div>
+    <div class="cocktail__category">{{ cocktail.category }}</div>
     <div class="content content--cocktail" @mousemove="handleMouseMove($event)">
-      <!-- TODO: use computation to define this img-url custom property -->
       <div
+        role="img" aria-label="A image of the cocktail"
         class="cocktail__image"
         :style="{
-          '--img-url': `url('https://www.thecocktaildb.com/images/media/drink/uuqqrv1439907068.jpg')`,
+          '--img-url': `url(${cocktail.imgUrl})`,
         }"
       ></div>
       <div class="cocktail__body">
-        <h3 class="cocktail__name">I'm a drink</h3>
-        <p class="cocktail__description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae
-          ullam ad alias, distinctio obcaecati accusantium excepturi nobis
-          asperiores. Blanditiis dolore rem quaerat corporis facere quibusdam.
+        <h3 class="cocktail__name">{{ cocktail.name }}</h3>
+        <p class="cocktail__instructions">
+          {{ cocktail.instructions }}
         </p>
         <div class="cocktail__ingredients">
-          <span>Vodka</span>
-          <span>Rhum</span>
-          <span>Beer</span>
+          <span v-for="(value, index) of measuredIngredients" :key="index">
+            {{ value }}</span
+          >
         </div>
       </div>
     </div>
@@ -110,6 +121,7 @@ function handleMouseMove(event: MouseEvent) {
 
 .content--cocktail {
   overflow: hidden;
+  display: grid
 }
 
 .cocktail__image {
@@ -119,11 +131,14 @@ function handleMouseMove(event: MouseEvent) {
   background-position: center 20%;
   background-size: cover;
   min-height: 20rem;
+  min-width: 15rem;
 }
 
 .cocktail {
   &__body {
     margin: 0.5rem;
+    display: grid;
+    height: 100%;
   }
 
   &__name {
@@ -144,23 +159,30 @@ function handleMouseMove(event: MouseEvent) {
     translate: -0.5rem -30%;
   }
 
-  &__description {
+  &__instructions {
     font-weight: var(--font-weight-medium-plus);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-line-clamp: 8;
   }
 
   &__ingredients {
     display: flex;
     gap: 0.5rem;
+    align-self: flex-end;
 
     margin-top: 1rem;
     overflow-x: auto;
-    padding-bottom: 1rem;
+    padding-bottom: 3rem;
 
     > span {
       border: 1px solid var(--border-color);
       padding: 0.4rem 0.8rem;
       font-weight: var(--font-weight-light-plus);
       border-radius: 0.3rem;
+      white-space: nowrap;
     }
   }
 }
