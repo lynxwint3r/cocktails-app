@@ -32,7 +32,8 @@ const measuredIngredients = computed(() => {
     <div class="cocktail__category">{{ cocktail.category }}</div>
     <div class="content content--cocktail" @mousemove="handleMouseMove($event)">
       <div
-        role="img" aria-label="A image of the cocktail"
+        role="img"
+        aria-label="A image of the cocktail"
         class="cocktail__image"
         :style="{
           '--img-url': `url(${cocktail.imgUrl})`,
@@ -121,7 +122,7 @@ const measuredIngredients = computed(() => {
 
 .content--cocktail {
   overflow: hidden;
-  display: grid
+  display: grid;
 }
 
 .cocktail__image {

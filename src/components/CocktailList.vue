@@ -1,25 +1,10 @@
 <script setup lang="ts">
 import CocktailCard from '@/components/CocktailCard.vue'
-import { cocktailDTO } from '@/core/DTOs/cocktailDTO'
-import type { Cocktail } from '@/core/models/Cocktail'
-import { fetchRandomCocktail } from '@/services/fetchRandomCocktail'
-import { ref } from 'vue'
+import { useRandomCocktails } from '@/composables/useRandomCocktails'
 
-const cocktails = ref<Cocktail[]>()
-
-// TODO: use a composable to do this stuff in a better way
-const cocktail = ref<Cocktail>()
-async function getRandomCocktails() {
-  const numberOfRandoms = 3
-  const results = await Promise.all(
-    [...new Array(numberOfRandoms)].map(() => fetchRandomCocktail())
-  )
-
-  const formattedCocktails = results.map((result) => cocktailDTO(result))
-  cocktails.value = formattedCocktails
-}
-
-getRandomCocktails()
+// Ideally, i should use a loading state variable to display some loader or things like this.
+// In a real app i would use something like useHttp from vueuse hooks or vue query from tanstack which provides caching for datas
+const { cocktails } = useRandomCocktails(3)
 </script>
 
 <template>
