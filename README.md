@@ -1,52 +1,29 @@
 # cocktails-app
 
-This template should help get you started developing with Vue 3 in Vite.
+This is an app that I had to develop for an Interview.
 
-## Recommended IDE Setup
+The goal of the app is to purpose 3 random cocktails to the user when he comes on the app
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+# Start the project
 
-## Type Support for `.vue` Imports in TS
+You can start the application in different way. You can either:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- Start it, once downloaded & installed using `pnpm dev` in dev mode/
+- Start it, using the `pnpm build` command and serve the generated `dist/` folder as you want.
+- Start it, using the docker file in the the repository. See the next section.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Start it with docker
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+To start it with docker. It's pretty simple.
 
-## Customize configuration
+1. You must have docker installed & running on your computer.
+2. You have to download the project.
+3. Move to the root folder of the project using your favourite terminal & your cli.
+4. Run the following command to build the image: `docker build -t cocktail-app .`
+5. Run the following command to run a container using the image: `docker run -d -p 8080:80 cocktail-app`
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### Infos about the Dockerfile
 
-## Project Setup
+The Dockerfile uses multistagging to allow Docker to cache some steps of the build process. That's to allow faster redeployments.
 
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+The app is serve using nginx.
